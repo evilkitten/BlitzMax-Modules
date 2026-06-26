@@ -1,0 +1,168 @@
+<html><head><title>mp3 reference</title>
+<link rel=stylesheet Type=text/css href='../../../../doc/bmxstyle.css'>
+</head><body>
+<table width=100% cellspacing=0><tr align=center><td class=small>&nbsp;</td>
+<td class=small width=1%><b>mp3.mp3:</b></td>
+<td class=small width=1%><a href=#types class=small>Types</a></td>
+<td class=small width=1%><a href=#modinfo class=small>Modinfo</a></td>
+<td class=small width=1%><a href='../../../../mod/mp3.mod/mp3.mod/mp3.bmx' class=small>Source</a></td>
+<td class=small>&nbsp;</td></tr></table>
+<h1>mp3</h1>
+MP3 and Metadata analysis
+This module is used to analyse and extract information from MP3 files.
+<h2><a name=types></a>Types Summary</h2><table class=doc width=100%>
+<tr><td class=docleft width=1%><a href=#MP3FILE>MP3FILE</a></td><td class=docright>
+MP3FILE.
+</td></tr>
+<tr><td class=docleft width=1%><a href=#MP3TAG>MP3TAG</a></td><td class=docright>
+MP3TAG.
+</td></tr>
+</table>
+<h2
+ id=typesdet>Types
+</h2>
+<table class=doc width=100% cellspacing=3 id=MP3FILE>
+<tr><td class=doctop colspan=2>Type MP3FILE</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>MP3FILE.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>Type class for MP3 file data. Metadata tag information is managed within the TAGList:TList field.</td></tr>
+</table>
+<table class=doc width=90% align=center><tr ><th class=doctop colspan=2 align=left><a name=MP3FILE_fields></a>Fields Summary</th></tr><tr><td colspan=2>
+<a href=#FileByteSize>FileByteSize</a>
+, 
+<a href=#FileName>FileName</a>
+, 
+<a href=#FilePath>FilePath</a>
+, 
+<a href=#TAGList>TAGList</a>
+</td></tr>
+</table>
+<table class=doc width=90% align=center><tr ><th class=doctop colspan=2 align=left><a name=MP3FILE_methods></a>Methods Summary</th></tr>
+<tr><td class=docleft width=1%><a href=#GetURL>GetURL</a></td><td class=docright>
+GetURL:String()
+</td></tr>
+</table>
+<table class=doc width=90% align=center><tr ><th class=doctop colspan=2 align=left><a name=MP3FILE_functions></a>Functions Summary</th></tr>
+<tr><td class=docleft width=1%><a href=#AnalyseFile>AnalyseFile</a></td><td class=docright>
+AnalyseFile:MP3File(URL:String)
+</td></tr>
+<tr><td class=docleft width=1%><a href=#CleanAnalysis</a></td><td class=docright>
+CleanAnalysis(MP3:MP3File)
+</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=FileByteSize>
+<tr><td class=doctop colspan=2>Field FileByteSize:Int</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Field ByteSize:Int.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>Contains the full size ( in Bytes ) of this instance's analysed file on disk.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=FileName>
+<tr><td class=doctop colspan=2>Field FileName:String</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Field FileName:String.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>Contains the FileName (excluding extension) to this instances' analysed file.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=FilePath>
+<tr><td class=doctop colspan=2>Field FilePath:String</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Field FilePath:String.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>Contains the path to this instance's analysed file location.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=TAGList>
+<tr><td class=doctop colspan=2>Field TAGList:TList</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Field TAGList:TList.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>A List of all mp3 metadata content.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=GetURL>
+<tr><td class=doctop colspan=2>Method GetURL:String()</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>GetURL:String()</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>Returns the full URL Path of this instance's MP3 File.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=AnalyseFile>
+<tr><td class=doctop colspan=2>Function AnalyseFile:MP3FILE(URL:String)</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>AnalyseFile:MP3File(URL:String)</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>Run this to gather all information from an mp3 file source. Returns an instance of MP3FILE object.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=CleanAnalysis>
+<tr><td class=doctop colspan=2>Function CleanAnalysis(MP3:MP3FILE)</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>CleanAnalysis(MP3:MP3FILE)</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>To cleanly delete the data associated with a previously analysed MP3FILE instance</td></tr>
+</table>
+<br>
+<table class=doc width=100% cellspacing=3 id=MP3TAG>
+<tr><td class=doctop colspan=2>Type MP3TAG</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>MP3TAG.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>This class is for metadata information retreived from an MP3FILE object once AnalyseFile() is called. Instances of MP3TAG are referenecd in the TAGList field of their respective MP3FILE OBJECT.</td></tr>
+</table>
+<table class=doc width=90% align=center><tr ><th class=doctop colspan=2 align=left><a name=MP3TAG_fields></a>Fields Summary</th></tr><tr><td colspan=2>
+<a href=#Data>Data</a>
+, 
+<a href=#Flags>Flags</a>
+, 
+<a href=#Index>Index</a>
+, 
+<a href=#Name>Name</a>
+, 
+<a href=#Size>Size</a>
+, 
+<a href=#Start>Start</a>
+, 
+<a href=#TAG>TAG</a>
+, 
+<a href=#Version>Version</a>
+</td></tr>
+</table>
+<table class=doc width=90% align=center><tr ><th class=doctop colspan=2 align=left><a name=MP3TAG_methods></a>Methods Summary</th></tr>
+<tr><td class=docleft width=1%><a href=#Output>Output</a></td><td class=docright>
+Output:String[]()
+</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Data>
+<tr><td class=doctop colspan=2>Field Data:String</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Data:String.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>The actual bytedata of the Tag content in string format.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Flags>
+<tr><td class=doctop colspan=2>Field Flags:Short</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Flags:Short.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>Used by some Metadata Tags to hold certain infromation pertaining to the format or contents of Data.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Index>
+<tr><td class=doctop colspan=2>Field Index:TLink</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Index:TLink.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>If required, this acts as a TLink for the parent MP3OBJECT's TAGList:TList.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Name>
+<tr><td class=doctop colspan=2>Field Name:String</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Name:String.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>A "frinedly Name" descriptor for the Metadata Tag key.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Size>
+<tr><td class=doctop colspan=2>Field Size:Int</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Size:Int.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>The size (in Bytes) of this partuclar Metadata Tag.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Start>
+<tr><td class=doctop colspan=2>Field Start:Int</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Start:Int.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>The offset (in Bytes) position of the start of this Metadata TAG within it's parent file.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=TAG>
+<tr><td class=doctop colspan=2>Field TAG:String</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>TAG:String.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>The Metadata Tag Identifying Key.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Version>
+<tr><td class=doctop colspan=2>Field Version:Float</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Version:Float.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>The TagID Version. Only v1 and v3 are supported.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=Output>
+<tr><td class=doctop colspan=2>Method Output:String[]()</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Output:String[]()</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>Outputs the Metadata Tag information as a string array.</td></tr>
+</table>
+<br>
+<h2 id=modinfo>Module Information</h2>
+<table width=100%>
+<tr><th width=1%>Version</th><td>1.2</td></tr>
+<tr><th width=1%>Author</th><td>PJ</td></tr>
+<tr><th width=1%>License</th><td>zlib/libpng</td></tr>
+<tr><th width=1%>Copyright</th><td>EKD</td></tr>
+</body></html>
