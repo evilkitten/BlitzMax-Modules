@@ -45,8 +45,8 @@ GetURL:String()
 <tr><td class=docleft width=1%><a href=#AnalyseFile>AnalyseFile</a></td><td class=docright>
 AnalyseFile:MP3File(URL:String)
 </td></tr>
-<tr><td class=docleft width=1%><a href=#CleanAnalysis</a></td><td class=docright>
-CleanAnalysis(MP3:MP3File)
+<tr><td class=docleft width=1%><a href=#CleanAnalysis>CleanAnalysis</a></td><td class=docright>
+Function CleanAnalysis(MP3:MP3FILE)
 </td></tr>
 </table>
 <table class=doc width=100% cellspacing=3 id=FileByteSize>
@@ -81,8 +81,8 @@ CleanAnalysis(MP3:MP3File)
 </table>
 <table class=doc width=100% cellspacing=3 id=CleanAnalysis>
 <tr><td class=doctop colspan=2>Function CleanAnalysis(MP3:MP3FILE)</td></tr>
-<tr><td class=docleft width=1%>Description</td><td class=docright>CleanAnalysis(MP3:MP3FILE)</td></tr>
-<tr><td class=docleft width=1%>Information</td><td class=docright>To cleanly delete the data associated with a previously analysed MP3FILE instance</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Function CleanAnalysis(MP3:MP3FILE)</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>To cleanly delete the data associated with a previously analysed MP3FILE instance.</td></tr>
 </table>
 <br>
 <table class=doc width=100% cellspacing=3 id=MP3TAG>
@@ -92,6 +92,8 @@ CleanAnalysis(MP3:MP3File)
 </table>
 <table class=doc width=90% align=center><tr ><th class=doctop colspan=2 align=left><a name=MP3TAG_fields></a>Fields Summary</th></tr><tr><td colspan=2>
 <a href=#Data>Data</a>
+, 
+<a href=#DataSize>DataSize</a>
 , 
 <a href=#Flags>Flags</a>
 , 
@@ -114,9 +116,14 @@ Output:String[]()
 </td></tr>
 </table>
 <table class=doc width=100% cellspacing=3 id=Data>
-<tr><td class=doctop colspan=2>Field Data:String</td></tr>
-<tr><td class=docleft width=1%>Description</td><td class=docright>Data:String.</td></tr>
-<tr><td class=docleft width=1%>Information</td><td class=docright>The actual bytedata of the Tag content in string format.</td></tr>
+<tr><td class=doctop colspan=2>Field Data:TBank</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>Data:TBank.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>The actual bytedata of the Tag content.</td></tr>
+</table>
+<table class=doc width=100% cellspacing=3 id=DataSize>
+<tr><td class=doctop colspan=2>Field DataSize:Long</td></tr>
+<tr><td class=docleft width=1%>Description</td><td class=docright>DataSize:TBank.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>The size of the Data field.</td></tr>
 </table>
 <table class=doc width=100% cellspacing=3 id=Flags>
 <tr><td class=doctop colspan=2>Field Flags:Short</td></tr>
@@ -131,12 +138,12 @@ Output:String[]()
 <table class=doc width=100% cellspacing=3 id=Name>
 <tr><td class=doctop colspan=2>Field Name:String</td></tr>
 <tr><td class=docleft width=1%>Description</td><td class=docright>Name:String.</td></tr>
-<tr><td class=docleft width=1%>Information</td><td class=docright>A "frinedly Name" descriptor for the Metadata Tag key.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>A "friendly Name" descriptor for the Metadata Tag key.</td></tr>
 </table>
 <table class=doc width=100% cellspacing=3 id=Size>
 <tr><td class=doctop colspan=2>Field Size:Int</td></tr>
 <tr><td class=docleft width=1%>Description</td><td class=docright>Size:Int.</td></tr>
-<tr><td class=docleft width=1%>Information</td><td class=docright>The size (in Bytes) of this partuclar Metadata Tag.</td></tr>
+<tr><td class=docleft width=1%>Information</td><td class=docright>The size (in Bytes) of this partuclar Metadata Tag (control characters and padding may make this larger than DataSize )</td></tr>
 </table>
 <table class=doc width=100% cellspacing=3 id=Start>
 <tr><td class=doctop colspan=2>Field Start:Int</td></tr>
@@ -161,8 +168,12 @@ Output:String[]()
 <br>
 <h2 id=modinfo>Module Information</h2>
 <table width=100%>
-<tr><th width=1%>Version</th><td>1.2</td></tr>
+<tr><th width=1%>Version</th><td>1.3</td></tr>
 <tr><th width=1%>Author</th><td>PJ</td></tr>
 <tr><th width=1%>License</th><td>zlib/libpng</td></tr>
 <tr><th width=1%>Copyright</th><td>EKD</td></tr>
+<tr><th width=1%>History</th><td>1.3 Deprecated v1 TAGs</td></tr>
+<tr><th width=1%>History</th><td>1.2 Added CleanAnalysis function</td></tr>
+<tr><th width=1%>History</th><td>1.1 TAG Friendly Naming</td></tr>
+<tr><th width=1%>History</th><td>1.0 Initial Release</td></tr>
 </body></html>
