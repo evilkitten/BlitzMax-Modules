@@ -4,11 +4,13 @@ Rem
 	This module is used to analyse and extract information from MP3 files
 End Rem
 Module mp3.mp3
-ModuleInfo "Version: 1.3"
+ModuleInfo "Version: 1.5"
 ModuleInfo "Author: PJ"
 ModuleInfo "License: zlib/libpng"
 ModuleInfo "Copyright: EKD"
 
+ModuleInfo "History: 1.5 Features operational Ready for re-introduction of v1 TAGS"
+ModuleInfo "History: 1.4 Fixes and documentation updated. &FFFE delimiter hidden from output"
 ModuleInfo "History: 1.3 Deprecated v1 TAGs"
 ModuleInfo "History: 1.2 Added CleanAnalysis function"
 ModuleInfo "History: 1.1 TAG Friendly Naming"
@@ -248,6 +250,7 @@ Type MP3FILE
 				EndIf
 								
 				If (TAG.Size=0)
+				'Prevents multiple empty TAGs
 					'DebugLog("Zero-Length tag")
 					If (TAG.Data)<>Null Then TAG.Data.Resize(0)
 					TAG=Null
@@ -367,7 +370,7 @@ Type MP3TAG
 			String(Self.Name),..
 			String(Self.TAG),..
 			String(Self.DataSize),..
-			String(DataString),..
+			DataString,..
 			String(Self.Start),..
 			String(Self.Size)..
 			]
@@ -375,6 +378,7 @@ Type MP3TAG
 	End Method
 	'The below methods and functions are for internal use only
 
+	'Sets Name field to a friendly human-reeadable descriptor
 	Method SetName()
 		If (Self.Version<2)
 			Self.Name=Self.TAG
@@ -395,9 +399,12 @@ Type MP3TAG
 		
 		For Local i:Int = 0 Until Self.Data.Size()
 			Local n:Int=PeekByte(Self.Data,i)
-			If ((n>=31) And n<254)Then s:+Chr(n)
+			If (n>=31) Then s:+Chr(n)
 		Next
-		
+
+		s=Replace(s,"ÿþ","")
+		s=Replace(s,"ÿþ","")
+
 		Return Trim(s)
 	End Method
 End Type
