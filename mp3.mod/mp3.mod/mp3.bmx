@@ -174,7 +174,10 @@ Type MP3FILE
 				b1 = ReadByte(Stream) & 255
 				tagpos = tagpos + 1
 				
+				TAG.Size=0
+				
 				If (b1)
+								
 					TAG.start = StreamPos(Stream)-1
 					
 					b2 = ReadByte(Stream) & 255
@@ -197,7 +200,7 @@ Type MP3FILE
 							tagpos = tagpos + 2
 									
 							TAG.ReadDataBank(Stream)
-
+							tagpos:+TAG.Size
 							Rem					
 								Local tagString:String=ReadValidStringUntilTerminated(Stream,TAG.Size)
 								tagpos:+TAG.Size
@@ -216,6 +219,7 @@ Type MP3FILE
 							tagpos = tagpos + 2
 								
 							TAG.ReadDataBank(Stream)	
+							tagpos:+TAG.Size
 								
 							Rem				
 								Local commString:String=ReadValidStringUntilTerminated(Stream,TAG.Size)
@@ -232,7 +236,7 @@ Type MP3FILE
 							tagpos = tagpos + 2
 									
 							TAG.ReadDataBank(Stream)	
-												
+							tagpos:+TAG.Size
 							Rem
 								Local defString:String=ReadValidStringUntilTerminated(Stream,TAG.Size)
 								tagpos:+TAG.Size
@@ -242,26 +246,21 @@ Type MP3FILE
 					End Select
 	
 				EndIf
-				
-				
+								
 				If (TAG.Size=0)
+					'DebugLog("Zero-Length tag")
+					If (TAG.Data)<>Null Then TAG.Data.Resize(0)
 					TAG=Null
 				Else
 					TAG.SetName()
-					TAG.Index = Self.TAGList.AddLast(TAG)
+					If (Self.TAGList=Null) Then Self.TAGList=New TList
+					TAG.Index = Self.TAGList.AddLast(TAG)				
 				End If
-				
-				
 			Wend
 
 		End If
 		
 		CloseFile Stream
-		
-		Method ReadDataBank:TBank(Stream:TStream)
-			Self.Data = CreateBank(Self.Size)
-			Self.DataSize=ReadBank(Self.Data,Stream,0,TAG.Size)
-		End Function
 		
 		Rem - Deprecated in favour of actual Bank reading
 			Function ReadValidStringUntilTerminated:String(Stream:TStream,Size:Int)
@@ -360,7 +359,7 @@ Type MP3TAG
 		about: Outputs the Metadata Tag information as a string array
 	End Rem
 	Method Output:String[]()
-		Local DataString:String=MP3TAG.ByteDataToString(T.Data)
+		Local DataString:String=Self.ByteDataToString()
 	
 		Local s:String[]=[..
 			String(Self.Version),..
@@ -383,16 +382,22 @@ Type MP3TAG
 			Self.Name=mp3_v3Tag_GetFriendlyName:String(Self.TAG)
 		End If
 	End Method
+
+	'Reads bytecode content into Self.Data:TBANK field and populates Self.DataSize accordingly
+	Method ReadDataBank:TBank(Stream:TStream)
+		Self.Data = CreateBank(Self.Size)
+		Self.DataSize=ReadBank(Self.Data,Stream,0,Self.Size)
+	End Method	
 	
 	'Returns a string version of TAG's Data field bank content
-	Function ByteDataToString:String(ByteDataBank:TBank)
+	Method ByteDataToString:String()
 		Local s:String=""
 		
-		For Local i:Int = 0 Until ByteDataBank.Size()
-			Local n:Int=PeekByte(ByteDataBank,i)
-			If ((B>=31))Then s:+Chr(B)
+		For Local i:Int = 0 Until Self.Data.Size()
+			Local n:Int=PeekByte(Self.Data,i)
+			If ((n>=31) And n<254)Then s:+Chr(n)
 		Next
 		
 		Return Trim(s)
-	End Function
+	End Method
 End Type
